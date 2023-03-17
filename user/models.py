@@ -1,6 +1,9 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+
+
+
 class User(AbstractUser):
     # Field used for authentication
     USERNAME_FIELD = 'email'
@@ -9,6 +12,7 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ['username']
 
     email = models.EmailField(unique=True)
+    followed_by = models.ManyToManyField(to="User", related_name="following", blank=True)
 
     def __str__(self):
         return self.username
