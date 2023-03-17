@@ -1,0 +1,6 @@
+name: motion-assignment-backend
+dependencies:
+  - python==3.10.9
+  - pip== 23.0.1
+  - pip:
+      django==-4.1.7
