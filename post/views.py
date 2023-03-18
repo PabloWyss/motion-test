@@ -62,14 +62,6 @@ class listFollowedUserPostPostView(ListAPIView):
 
 class listPostOfGivenUserView(ListAPIView):
     serializer_class = PostSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        users_followed = self.request.user.following.all()
-        return Post.objects.filter(created_by__in=users_followed)
-
-class listPostOfGivenUserView(ListAPIView):
-    serializer_class = PostSerializer
     queryset = Post.objects.all()
     lookup_field = 'id'
     permission_classes = [IsAuthenticated]
