@@ -5,7 +5,10 @@ from rest_framework.response import Response
 
 from post.models import Post
 from post.permissions import IsSameUser
-from post.serializers import PostSerializer
+from post.serializers import PostSerializer, UserSerializer
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 # Create your views here.
@@ -48,4 +51,33 @@ class UpdateLikedPostView(RetrieveUpdateDestroyAPIView):
         else:
             request.user.posts_liked.add(post)
             return Response(serializer.data)
+
+class listFollowedUserPostPostView(ListAPIView):
+    serializer_class = PostSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        users_followed = self.request.user.following.all()
+        return Post.objects.filter(created_by__in=users_followed)
+
+class listPostOfGivenUserView(ListAPIView):
+    serializer_class = PostSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        users_followed = self.request.user.following.all()
+        return Post.objects.filter(created_by__in=users_followed)
+
+class listPostOfGivenUserView(ListAPIView):
+    serializer_class = PostSerializer
+    queryset = Post.objects.all()
+    lookup_field = 'id'
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user_id = self.kwargs['id']
+
+        return Post.objects.filter(created_by_id=user_id)
+
+
 
