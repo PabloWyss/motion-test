@@ -15,11 +15,11 @@ User = get_user_model()
 
 class ListCreatePostView(ListCreateAPIView):
     serializer_class = PostSerializer
-    queryset = Post.objects.all().order_by('-created')
+    queryset = Post.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [filters.OrderingFilter]
     ordering_fields = ['created']
-    ordering = ['created']
+    ordering = ['-created']
 
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
@@ -65,6 +65,9 @@ class listPostOfGivenUserView(ListAPIView):
     queryset = Post.objects.all()
     lookup_field = 'id'
     permission_classes = [IsAuthenticated]
+    filter_backends = [filters.OrderingFilter]
+    ordering_fields = ['created']
+    ordering = ['-created']
 
     def get_queryset(self):
         user_id = self.kwargs['id']
