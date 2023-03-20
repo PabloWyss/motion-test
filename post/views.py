@@ -14,6 +14,19 @@ User = get_user_model()
 # Create your views here.
 
 class ListCreatePostView(ListCreateAPIView):
+    """
+    post:
+    Create new Post
+
+    # subtitle
+    **User** can make a new *post* by sending post data
+
+    get:
+    List all posts
+
+    # subtitle
+    Lists all the posts of all users in chronological order
+    """
     serializer_class = PostSerializer
     queryset = Post.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -43,15 +56,18 @@ class UpdateLikedPostView(RetrieveUpdateDestroyAPIView):
 
     def patch(self, request, *args, **kwargs):
         liked_post_by_user = request.user.posts_liked.all()
-        post = self.get_object()
-        serializer = self.get_serializer(post)
-        if post in liked_post_by_user:
-            request.user.posts_liked.remove(post)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        if instance in liked_post_by_user:
+            request.user.posts_liked.remove(instance)
+            instance.like_count = instance.liked_by.count()
+            instance.save()
             return Response(serializer.data)
         else:
-            request.user.posts_liked.add(post)
+            request.user.posts_liked.add(instance)
+            instance.like_count = instance.liked_by.count()
+            instance.save()
             return Response(serializer.data)
-
 class listFollowedUserPostPostView(ListAPIView):
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticated]
