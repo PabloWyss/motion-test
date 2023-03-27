@@ -5,7 +5,7 @@ from rest_framework.response import Response
 
 from post.models import Post
 from post.permissions import IsSameUser
-from post.serializers import PostSerializer, UserSerializer
+from post.serializers import PostSerializer
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
