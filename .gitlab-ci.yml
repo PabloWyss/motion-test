@@ -28,6 +28,7 @@ lint:
     - export CI_BUILD_REF_NAME=$CI_COMMIT_REF_NAME
     - docker compose -p "$CI_PIPELINE_ID" -f docker-compose.ci.yml run backend flake8 .
 
+
 push image:
   stage: push
   only:
