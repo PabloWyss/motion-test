@@ -3,8 +3,9 @@ stages:
   - build
   - lint
   - push
-  - deploy
   - cleanup
+  - deploy
+
 
 before_script:
   - docker login -u "gitlab-ci-token" -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
@@ -29,7 +30,7 @@ lint:
     - docker compose -p "$CI_PIPELINE_ID" -f docker-compose.ci.yml run backend flake8 .
 
 
-push image:
+push master:
   stage: push
   only:
     - master
