@@ -2,7 +2,7 @@ version: '3'
 
 services:
   backend:
-    image: registry.gitlab.propulsion-home.ch/pablo-wyss/week-7/week7-day5:master
+    image: registry.gitlab.propulsion-home.ch/full-stack/batch-23-feb-2023/motion-backend/team-2/motion-project:master
     volumes:
       - static_files:/static-files
       - media_files:/media-files
@@ -37,6 +37,8 @@ volumes:
   static_files:
   media_files:
   build:
+
+
 
 
 
