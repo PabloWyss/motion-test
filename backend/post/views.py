@@ -37,17 +37,22 @@ class ListCreatePostView(ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
 
+
 class RetrieveUpdateDeletePostView(RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
     queryset = Post.objects.all()
     lookup_field = 'id'
     permission_classes = [IsAuthenticatedOrReadOnly, IsSameUser]
 
+
 class ListLikedPostView(ListAPIView):
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticated]
+
     def get_queryset(self):
         return Post.objects.filter(liked_by=self.request.user)
+
+
 class UpdateLikedPostView(RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
     queryset = Post.objects.all()
@@ -68,6 +73,8 @@ class UpdateLikedPostView(RetrieveUpdateDestroyAPIView):
             instance.like_count = instance.liked_by.count()
             instance.save()
             return Response(serializer.data)
+
+
 class listFollowedUserPostPostView(ListAPIView):
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticated]
@@ -75,6 +82,7 @@ class listFollowedUserPostPostView(ListAPIView):
     def get_queryset(self):
         users_followed = self.request.user.following.all()
         return Post.objects.filter(created_by__in=users_followed)
+
 
 class listPostOfGivenUserView(ListAPIView):
     serializer_class = PostSerializer
@@ -88,6 +96,3 @@ class listPostOfGivenUserView(ListAPIView):
     def get_queryset(self):
         user_id = self.kwargs['id']
         return Post.objects.filter(created_by_id=user_id)
-
-
-

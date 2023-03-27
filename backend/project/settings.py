@@ -16,7 +16,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -30,8 +29,6 @@ ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1']
 CORS_ALLOW_ALL_ORIGINS = True
 
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,11 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-
     'post',
     'registrationprofile',
     'user',
-
 
     'rest_framework',
     'drf_yasg',
@@ -83,7 +78,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -97,7 +91,6 @@ DATABASES = {
         "PASSWORD": os.environ.get('POSTGRES_PASSWORD'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -117,7 +110,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -128,7 +120,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -141,7 +132,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 MEDIA_URL = "media-files/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media-files") if DEBUG else '/media-files/'
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -169,7 +159,7 @@ SWAGGER_SETTINGS = {
     'USE_SESSION_AUTH': True,  # Change settings to True to enable Django Login option
     'LOGIN_URL': 'admin/',  # URL For Django Login
     'LOGOUT_URL': 'admin/logout/',  # URL For Django Logout
-    'SECURITY_DEFINITIONS': { # Allows usage of Access token to make requests on the docs.
+    'SECURITY_DEFINITIONS': {  # Allows usage of Access token to make requests on the docs.
         'Bearer': {
             'type': 'apiKey',
             'name': 'Authorization',
@@ -177,4 +167,3 @@ SWAGGER_SETTINGS = {
         }
     }
 }
-
