@@ -18,9 +18,9 @@ COPY ./scripts /scripts
 RUN chmod +x ./scripts
 
 RUN /opt/conda/bin/conda env create -f /backend/requirements.yml
-ENV PATH /opt/conda/envs/django_app_project_day5/bin:$PATH
+ENV PATH /opt/conda/envs/motion-assignment-backend/bin:$PATH
 ENV PYTHONDONTWRITEBYTECODE=1
-RUN echo "source activate django_app_project_day5" >~/.bashrc
+RUN echo "source activate motion-assignment-backend" >~/.bashrc
 
 WORKDIR /frontend
 COPY ./frontend/package.json /frontend/
