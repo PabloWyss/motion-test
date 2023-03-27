@@ -1,3 +1,14 @@
+Documentation
+
+Axios implementation:
+callAPI('url')
+
+Auth Token in localStorage:
+'auth-token'
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
