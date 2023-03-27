@@ -30,4 +30,3 @@ COPY ./frontend /frontend
 RUN npm run build
 
 WORKDIR /backend
-
