@@ -2,7 +2,7 @@ version: '3'
 
 services:
   backend:
-    image: registry.gitlab.propulsion-home.ch/full-stack/batch-23-feb-2023/motion-backend/team-2/motion-project:master
+    image: motion:lates
     volumes:
       - static_files:/static-files
       - media_files:/media-files

@@ -2,6 +2,9 @@
 .DS_Store
 db
 db.sqlite3
+envs
+envs/prod.env
+envs/dev.env
 
 Django #
 *.log

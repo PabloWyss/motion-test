@@ -2,7 +2,7 @@ version: '3'
 
 services:
   backend:
-    image: registry.gitlab.propulsion-home.ch/full-stack/batch-23-feb-2023/motion-backend/team-2/motion-project:latest
+    image: motion:latest
     ports:
       - '8001:8000'
     volumes:
