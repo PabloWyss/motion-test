@@ -2,7 +2,7 @@ version: '3'
 
 services:
   backend:
-    image: motion:lates
+    image: 975050140264.dkr.ecr.eu-central-2.amazonaws.com/motion
     volumes:
       - static_files:/static-files
       - media_files:/media-files
