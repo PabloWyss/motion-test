@@ -30,7 +30,6 @@ services:
       - static_files:/static-files
       - media_files:/media-files
       - build:/build
-      - /etc/letsencrypt:/etc/letsencrypt
 
 volumes:
   postgres_db:
